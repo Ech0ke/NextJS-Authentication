@@ -18,7 +18,6 @@ function LoginPage() {
         <h1 className="text-2xl font-bold mb-6 text-center">
           Login to the DEMO
         </h1>
-        <hr />
         <label htmlFor="email">Email</label>
         <input
           className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
