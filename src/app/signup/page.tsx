@@ -1,15 +1,30 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { axios } from "axios";
 
 function SignupPage() {
+  const router = useRouter();
   const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
   });
+
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0 &&
+      user.username.length > 0
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   const handleSignup = async () => {};
 
@@ -47,8 +62,9 @@ function SignupPage() {
           placeholder="********"
         />
         <button
-          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 hover:bg-orange-500 transition duration-300 ease-in-out"
+          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
           onClick={handleSignup}
+          disabled={buttonDisabled}
         >
           Signup
         </button>
