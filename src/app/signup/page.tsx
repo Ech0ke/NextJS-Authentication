@@ -3,6 +3,8 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { axios } from "axios";
+import { BeatLoader } from "react-spinners";
+import { toast, Toaster } from "react-hot-toast";
 
 function SignupPage() {
   const router = useRouter();
@@ -13,6 +15,7 @@ function SignupPage() {
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (
@@ -26,10 +29,20 @@ function SignupPage() {
     }
   }, [user]);
 
-  const handleSignup = async () => {};
+  const handleSignup = async () => {
+    try {
+    } catch (e) {
+      toast.error((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen">
+      <div>
+        <Toaster />
+      </div>
       <div className="flex flex-col rounded-md items-center max-w-lg min-w-[280px] w-2/5 justify-center pt-8 pb-5 px-5 md:px-10 bg-slate-50 text-black">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Signup to the DEMO
@@ -62,11 +75,15 @@ function SignupPage() {
           placeholder="********"
         />
         <button
-          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
+          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
           onClick={handleSignup}
           disabled={buttonDisabled}
         >
-          Signup
+          {loading ? (
+            <BeatLoader color="white" size={9} speedMultiplier={0.9} />
+          ) : (
+            "Signup"
+          )}
         </button>
         <Link
           href="/login"
