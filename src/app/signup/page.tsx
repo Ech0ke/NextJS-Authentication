@@ -33,7 +33,6 @@ function SignupPage() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
-      console.log("Sign up success", response.data);
       router.push("/login");
     } catch (e: any) {
       if (e.response && e.response.data && e.response.data.error) {
@@ -85,7 +84,7 @@ function SignupPage() {
           placeholder="********"
         />
         <button
-          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
+          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
           onClick={handleSignup}
           disabled={buttonDisabled}
         >
