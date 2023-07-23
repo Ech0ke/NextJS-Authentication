@@ -32,7 +32,7 @@ function SignupPage() {
   const handleSignup = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/signup", user);
+      await axios.post("/api/users/signup", user);
       router.push("/login");
     } catch (e: any) {
       if (e.response && e.response.data && e.response.data.error) {
