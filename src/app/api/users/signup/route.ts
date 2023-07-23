@@ -6,6 +6,7 @@ import bcryptjs from "bcryptjs";
 connect();
 
 export async function POST(request: NextRequest) {
+  const userTakenErrorMessage: string = "Cannot signup. User already exists.";
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
@@ -16,14 +17,14 @@ export async function POST(request: NextRequest) {
     let user = await User.findOne({ email });
     if (user) {
       return NextResponse.json(
-        { error: "User already exists" },
+        { error: userTakenErrorMessage },
         { status: 400 }
       );
     }
     user = await User.findOne({ username });
     if (user) {
       return NextResponse.json(
-        { error: "User already exists" },
+        { error: userTakenErrorMessage },
         { status: 400 }
       );
     }

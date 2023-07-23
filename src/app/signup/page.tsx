@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { axios } from "axios";
+import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -14,8 +14,8 @@ function SignupPage() {
     username: "",
   });
 
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (
@@ -31,8 +31,18 @@ function SignupPage() {
 
   const handleSignup = async () => {
     try {
-    } catch (e) {
-      toast.error((e as Error).message);
+      setLoading(true);
+      const response = await axios.post("/api/users/signup", user);
+      console.log("Sign up success", response.data);
+      router.push("/login");
+    } catch (e: any) {
+      if (e.response && e.response.data && e.response.data.error) {
+        // If the error object has a response and the response has a data object with an "error" property
+        toast.error(e.response.data.error); // Display the error message
+      } else {
+        // If the error object does not contain the expected structure, show the original error message
+        toast.error((e as Error).message);
+      }
     } finally {
       setLoading(false);
     }
