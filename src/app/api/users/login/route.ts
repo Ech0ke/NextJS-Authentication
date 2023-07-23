@@ -14,12 +14,19 @@ export async function POST(request: NextRequest) {
     // check if user exists
     const user = await User.findOne({ email });
 
+    if (!user) {
+      return NextResponse.json(
+        { error: "Email or password is not correct." },
+        { status: 400 }
+      );
+    }
+
     // check if password is correct
     const validPassword: boolean = await bcryptjs.compare(
       password,
       user.password
     );
-    if (!user || !validPassword) {
+    if (!validPassword) {
       return NextResponse.json(
         { error: "Email or password is not correct." },
         { status: 400 }
