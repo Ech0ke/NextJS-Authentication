@@ -7,7 +7,7 @@ import Logo from "@/images/demoLogo.svg";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
-import { Router, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Nav() {
   const router = useRouter();
