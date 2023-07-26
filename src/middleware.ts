@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifyAuth } from "./helpers/jwtActions";
+import { GET as logout } from "./app/api/users/logout/route";
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // find path from request object
   const path: string = request.nextUrl.pathname;
 
@@ -10,7 +12,24 @@ export function middleware(request: NextRequest) {
 
   const token: string = request.cookies.get("token")?.value || "";
 
-  // if user is logged in, redirect to home
+  const verifiedToken =
+    token &&
+    (await verifyAuth(token).catch((error: any) => console.log(error)));
+
+  if (isPublicPath && !verifiedToken) {
+    return;
+  }
+
+  if (!verifiedToken) {
+    // Set the token to an empty string to clear it
+    const redirectUrl = new URL("/login", request.nextUrl);
+    const response = NextResponse.redirect(redirectUrl);
+    response.cookies.set("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
+    return response;
+  }
   if (isPublicPath && token) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
@@ -20,7 +39,6 @@ export function middleware(request: NextRequest) {
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: ["/", "/login", "/signup", "/profile/:path*"],
 };
