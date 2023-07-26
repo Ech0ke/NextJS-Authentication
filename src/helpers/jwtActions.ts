@@ -1,4 +1,4 @@
-import { SignJWT, jwtVerify } from "jose";
+import { jwtVerify } from "jose";
 
 type UserJwtPayload = {
   jti: string;
@@ -14,7 +14,7 @@ export function getJwtSecretKey() {
   return secret;
 }
 
-export async function verifyAuth(token: string) {
+export async function verifyJWT(token: string) {
   try {
     const verified = await jwtVerify(
       token,

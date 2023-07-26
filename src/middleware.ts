@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyAuth } from "./helpers/jwtActions";
-import { GET as logout } from "./app/api/users/logout/route";
+import { verifyJWT } from "./helpers/jwtActions";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -13,8 +12,7 @@ export async function middleware(request: NextRequest) {
   const token: string = request.cookies.get("token")?.value || "";
 
   const verifiedToken =
-    token &&
-    (await verifyAuth(token).catch((error: any) => console.log(error)));
+    token && (await verifyJWT(token).catch((error: any) => console.log(error)));
 
   if (isPublicPath && !verifiedToken) {
     return;
