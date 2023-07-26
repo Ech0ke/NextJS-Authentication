@@ -6,7 +6,7 @@ export const getDataFromToken = (request: NextRequest) => {
     const encodedToken: string = request.cookies.get("token")?.value || "";
     const decodedToken = decodeJwt(encodedToken);
 
-    return decodedToken.id;
+    return decodedToken.id as string;
   } catch (e: any) {
     throw new Error(e.message);
   }
