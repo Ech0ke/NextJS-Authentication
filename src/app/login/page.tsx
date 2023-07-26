@@ -24,7 +24,8 @@ function LoginPage() {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       setLoading(true);
       await axios.post("/api/users/login", user);
@@ -51,35 +52,37 @@ function LoginPage() {
         <h1 className="text-2xl font-bold mb-6 text-center">
           Login to the DEMO
         </h1>
-        <label htmlFor="email">Email</label>
-        <input
-          className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-          id="email"
-          type="text"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-          placeholder="e.g. email@mail.com"
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-          id="password"
-          type="password"
-          value={user.password}
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-          placeholder="********"
-        />
-        <button
-          className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
-          onClick={handleLogin}
-          disabled={buttonDisabled}
-        >
-          {loading ? (
-            <BeatLoader color="white" size={9} speedMultiplier={0.9} />
-          ) : (
-            "Login"
-          )}
-        </button>
+        <form onSubmit={handleLogin} className="text-center">
+          <label htmlFor="email">Email</label>
+          <input
+            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+            id="email"
+            type="text"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            placeholder="e.g. email@mail.com"
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+            id="password"
+            type="password"
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            placeholder="********"
+          />
+          <button
+            className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
+            type="submit"
+            disabled={buttonDisabled}
+          >
+            {loading ? (
+              <BeatLoader color="white" size={9} speedMultiplier={0.9} />
+            ) : (
+              "Login"
+            )}
+          </button>
+        </form>
         <Link
           href="/signup"
           className="underline hover:text-orange-500 transition duration-300 ease-in-out"
