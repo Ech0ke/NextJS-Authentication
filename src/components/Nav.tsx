@@ -11,8 +11,11 @@ import { useRouter } from "next/navigation";
 
 function Nav() {
   const router = useRouter();
-  const pathname: string = usePathname();
+  const pathname = usePathname();
+  let absolutePath = window.location.origin;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  console.log(absolutePath);
 
   const toggleMenu = (): void => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
@@ -20,7 +23,7 @@ function Nav() {
 
   const handleLogout = async (): Promise<void> => {
     try {
-      await axios.get("api/users/logout");
+      await axios.get(`${absolutePath}/api/users/logout`);
       router.push("/login");
     } catch (e: any) {
       if (e.response) {
