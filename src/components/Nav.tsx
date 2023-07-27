@@ -15,8 +15,6 @@ function Nav() {
   let absolutePath = window.location.origin;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  console.log(absolutePath);
-
   const toggleMenu = (): void => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
