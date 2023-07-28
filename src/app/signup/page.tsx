@@ -36,7 +36,7 @@ function SignupPage() {
       await axios.post("/api/users/signup", user);
       router.push("/login");
     } catch (e: any) {
-      if (e.response && e.response.data && e.response.data.error) {
+      if (e.response) {
         // If the error object has a response and the response has a data object with an "error" property
         toast.error(e.response.data.error); // Display the error message
       } else {
