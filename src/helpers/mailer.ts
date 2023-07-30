@@ -44,11 +44,14 @@ export async function sendEmail({ email, emailType, userId }: sendEmailProps) {
       subject: `DEMO APP: ${
         emailType === "VERIFY" ? "Verify your email" : "Reset your password"
       }`,
-      html: `<p>Click <a href="${process.env
-        .DOMAIN!}/verifyemail?token=${hashedToken}">here</a> to ${
+      html: `<p>Click <a href="${process.env.DOMAIN!}/${
+        emailType === "VERIFY" ? "verifyemail" : "resetpassword"
+      }?token=${hashedToken}">here</a> to ${
         emailType === "VERIFY" ? "verify your email" : "reset your password"
       }. If the link doesn't work, you can manually access verification page by entering it in your browser: <br> ${process
-        .env.DOMAIN!}/verifyemail?token=${hashedToken}</p>`,
+        .env.DOMAIN!}/${
+        emailType === "VERIFY" ? "verifyemail" : "resetpassword"
+      }?token=${hashedToken}</p>`,
     };
 
     const mailresponse = await transport.sendMail(mailOptions);
