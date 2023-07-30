@@ -50,9 +50,6 @@ function SignupPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div>
-        <Toaster />
-      </div>
       <div className="flex flex-col rounded-md items-center max-w-lg min-w-[280px] w-2/5 justify-center pt-8 pb-5 px-5 md:px-10 bg-slate-50 text-black">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Signup to the DEMO
