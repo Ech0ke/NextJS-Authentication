@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Logo from "@/images/demoLogo.svg";
@@ -12,8 +12,15 @@ import { useRouter } from "next/navigation";
 function Nav() {
   const router = useRouter();
   const pathname = usePathname();
-  let absolutePath = window.location.origin;
+  let absolutePath: string;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  // TODO: use redux to show different navbars based on if the user is logged in or not
+
+  useEffect(() => {
+    absolutePath = window.location.origin;
+    // Rest of your code that relies on window can go here
+  }, [pathname]);
 
   const toggleMenu = (): void => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
@@ -21,7 +28,7 @@ function Nav() {
 
   const handleLogout = async (): Promise<void> => {
     try {
-      await axios.get(`${absolutePath}/api/users/logout`);
+      await axios.get(`http://localhost:3000/api/users/logout`);
       router.push("/login");
     } catch (e: any) {
       if (e.response) {
