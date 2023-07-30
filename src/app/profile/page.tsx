@@ -39,7 +39,6 @@ function ProfilePage() {
   return (
     <>
       <div className="min-h-screen">
-        <Nav />
         {!userData ? (
           <div className="flex flex-col gap-2 justify-center items-center min-h-[85vh]">
             <BeatLoader color="white" size={18} speedMultiplier={0.9} />

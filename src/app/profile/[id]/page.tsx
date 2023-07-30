@@ -4,7 +4,6 @@ import React from "react";
 function UserProfile({ params }: any) {
   return (
     <div>
-      <Nav />
       <div className="flex flex-col justify-center space-y-4 items-center min-h-screen">
         <h1>Profile</h1>
         <div className="flex flex-wrap justify-center gap-2">
