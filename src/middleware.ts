@@ -8,7 +8,10 @@ export async function middleware(request: NextRequest) {
   const path: string = request.nextUrl.pathname;
 
   const isPublicPath: boolean =
-    path === "/login" || path === "/signup" || path === "/verifyemail";
+    path === "/login" ||
+    path === "/signup" ||
+    path === "/verifyemail" ||
+    path === "/forgotpassword";
 
   const token: string = request.cookies.get("token")?.value || "";
 
@@ -39,5 +42,12 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/signup", "/profile/:path*", "/verifyemail"],
+  matcher: [
+    "/",
+    "/login",
+    "/signup",
+    "/profile/:path*",
+    "/verifyemail",
+    "/forgotpassword",
+  ],
 };
