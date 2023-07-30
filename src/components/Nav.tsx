@@ -12,19 +12,17 @@ import { useRouter } from "next/navigation";
 function Nav() {
   const router = useRouter();
   const pathname = usePathname();
-  let absolutePath: string;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   // TODO: use redux to show different navbars based on if the user is logged in or not
 
-  useEffect(() => {
-    absolutePath = window.location.origin;
-    // Rest of your code that relies on window can go here
-  }, [pathname]);
-
   const toggleMenu = (): void => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
+
+  useEffect(() => {
+    toggleMenu();
+  }, [pathname]);
 
   const handleLogout = async (): Promise<void> => {
     try {
@@ -55,7 +53,7 @@ function Nav() {
           <div className="flex md:order-2">
             <button
               type="button"
-              className="text-white bg-orange-700 hover:bg-orange-800 focus:outline-none focus:ring-0 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
+              className="text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-0 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
               onClick={handleLogout}
             >
               Logout
@@ -95,9 +93,11 @@ function Nav() {
               <li>
                 <Link
                   href="/"
-                  className={`block py-2 pl-3 pr-4 text-gray-100 ${
-                    pathname === "/" ? "bg-orange-700" : "hover:bg-gray-700"
-                  } rounded md:bg-transparent md:p-0 md:text-orange-500 `}
+                  className={`${
+                    pathname === "/"
+                      ? "text-orange-500"
+                      : " hover:underline text-gray-100"
+                  }`}
                   aria-current="page"
                 >
                   Home
@@ -106,9 +106,11 @@ function Nav() {
               <li>
                 <Link
                   href="/login"
-                  className={`block py-2 pl-3 pr-4 text-gray-100 ${
-                    pathname === "/" ? "bg-orange-700" : "hover:bg-gray-700"
-                  } rounded md:bg-transparent md:p-0 md:text-orange-500 `}
+                  className={`${
+                    pathname === "/login"
+                      ? "text-orange-500"
+                      : " hover:underline text-gray-100"
+                  }`}
                   aria-current="page"
                 >
                   Login
@@ -117,11 +119,11 @@ function Nav() {
               <li>
                 <Link
                   href="/signup"
-                  className={`block py-2 pl-3 pr-4 text-gray-100 ${
-                    pathname === "/signin"
-                      ? "bg-orange-700"
-                      : "hover:bg-gray-700"
-                  } rounded md:bg-transparent md:p-0 md:text-orange-500 `}
+                  className={`${
+                    pathname === "/signup"
+                      ? "text-orange-500"
+                      : " hover:underline text-gray-100"
+                  }`}
                   aria-current="page"
                 >
                   Signup
@@ -130,11 +132,11 @@ function Nav() {
               <li>
                 <Link
                   href="/profile"
-                  className={`block py-2 pl-3 pr-4 text-gray-100 ${
+                  className={`${
                     pathname === "/profile"
-                      ? "bg-orange-700"
-                      : "hover:bg-gray-700"
-                  } rounded md:bg-transparent md:p-0 md:text-orange-500 `}
+                      ? "text-orange-500"
+                      : " hover:underline text-gray-100"
+                  }`}
                   aria-current="page"
                 >
                   Profile
