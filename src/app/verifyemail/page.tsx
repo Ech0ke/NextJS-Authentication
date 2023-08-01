@@ -39,9 +39,9 @@ function VerifyEmailPage() {
     }
   }
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="bg-slate-50 p-10 rounded-lg text-center text-black space-y-6">
-        <h1 className="text-3xl">Verify Email</h1>
+    <div className="flex justify-center items-center min-h-[calc(100vh-72px)]">
+      <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
+        <h1 className="text-2xl font-bold mb-6 text-center">Verify Email</h1>
         {verified ? (
           <div>
             <h2 className="text-2xl">Email Verified ✅</h2>{" "}
@@ -55,7 +55,7 @@ function VerifyEmailPage() {
 
         {error && (
           <div>
-            <h2 className="text-2xl bg-red-600 text-black p-2 rounded-md">
+            <h2 className="text-xl bg-red-600 text-black p-2 rounded-md">
               Error: {errorMessage}
             </h2>
           </div>

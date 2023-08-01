@@ -22,6 +22,16 @@ function ResetPasswordPage() {
     setToken(urlToken);
   }, []);
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (formData.password.length > 0 && formData.confirmPassword.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [formData]);
+
   function handleFormChange(e: any) {
     const { name, value } = e.target;
     setFormData((oldData) => ({ ...oldData, [name]: value }));
@@ -55,30 +65,42 @@ function ResetPasswordPage() {
     }
   }
   return (
-    <div>
-      <form className="text-center" onSubmit={handleSubmit}>
-        <label htmlFor="password">New password</label>
-        <input
-          className="w-full p-2 text-gray-800 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-          id="password"
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleFormChange}
-          placeholder="******"
-        />
-        <label htmlFor="confirmPassword">Confirm new password</label>
-        <input
-          className="w-full p-2 text-gray-800 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          value={formData.confirmPassword}
-          onChange={handleFormChange}
-          placeholder="******"
-        />
-        <button className="bg-orange-600 p-4 rounded-md">Reset password</button>
-      </form>
+    <div className="flex justify-center items-center min-h-[calc(100vh-72px)]">
+      <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
+        <h1 className="text-2xl font-bold mb-6 text-center">Reset password</h1>
+        <p className="mt-1 mb-5 text-center">
+          Plese enter your new password. Make sure you remember it and don't
+          share it with anyone!
+        </p>
+        <form className="text-center" onSubmit={handleSubmit}>
+          <label htmlFor="password">New password</label>
+          <input
+            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleFormChange}
+            placeholder="******"
+          />
+          <label htmlFor="confirmPassword">Repeat new password</label>
+          <input
+            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            value={formData.confirmPassword}
+            onChange={handleFormChange}
+            placeholder="******"
+          />
+          <button
+            disabled={buttonDisabled}
+            className="w-full p-2 bg-orange-600 text-white  rounded-lg mt-2 mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
+          >
+            Reset password
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

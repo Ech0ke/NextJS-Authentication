@@ -49,7 +49,7 @@ function SignupPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-[calc(100vh-72px)]">
       <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Signup to the DEMO
