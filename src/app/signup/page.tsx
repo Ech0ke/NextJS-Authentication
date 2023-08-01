@@ -50,14 +50,14 @@ function SignupPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col rounded-md items-center max-w-lg min-w-[280px] w-2/5 justify-center pt-8 pb-5 px-5 md:px-10 bg-slate-50 text-black">
+      <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Signup to the DEMO
         </h1>
-        <form onSubmit={handleSignup} className="text-center">
+        <form onSubmit={handleSignup} className="[&>label]:ml-1">
           <label htmlFor="username">Username</label>
           <input
-            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-4 bg-transparent transition duration-200 ease-in-out text-sm"
             id="username"
             type="text"
             value={user.username}
@@ -66,7 +66,7 @@ function SignupPage() {
           />
           <label htmlFor="email">Email</label>
           <input
-            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-4 bg-transparent transition duration-200 ease-in-out text-sm"
             id="email"
             type="text"
             value={user.email}
@@ -75,7 +75,7 @@ function SignupPage() {
           />
           <label htmlFor="password">Password</label>
           <input
-            className="w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
             id="password"
             type="password"
             value={user.password}
@@ -83,7 +83,7 @@ function SignupPage() {
             placeholder="********"
           />
           <button
-            className="w-full p-2 border bg-orange-600 text-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
+            className="w-full p-2 bg-orange-600 text-white  rounded-lg mt-2 mb-4 focus:outline-none focus:border-none enabled:hover:bg-orange-500 disabled:opacity-50 transition duration-300 ease-in-out"
             onClick={handleSignup}
             disabled={buttonDisabled}
           >
