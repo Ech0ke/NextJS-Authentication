@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: "Invalid token or link expired" },
+        { error: "Invalid details or link expired." },
         { status: 400 }
       );
     }
