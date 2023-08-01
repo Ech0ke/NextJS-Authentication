@@ -13,6 +13,13 @@ function Nav() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const allowedPaths = [
+    "/login",
+    "/signup",
+    "/forgotpassword",
+    "/verifyemail",
+    "/resetpassword",
+  ];
 
   // TODO: use redux to show different navbars based on if the user is logged in or not
 
@@ -45,17 +52,24 @@ function Nav() {
 
   return (
     <>
-      <Toaster />
+      <Toaster
+        containerStyle={{
+          top: 80,
+        }}
+      />
       <nav className="bg-gray-900 border-gray-200">
         <div className=" flex flex-wrap items-center justify-between mx-0 p-4">
-          <div className="flex items-center">
+          <div
+            className="flex items-center hover:cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <Image src={Logo} className="h-8 w-5 mr-3" alt="App Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               DEMO
             </span>
           </div>
 
-          {pathname === "/login" || pathname === "/signup" ? (
+          {allowedPaths.includes(pathname) ? (
             <button
               type="button"
               className="text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-0 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
