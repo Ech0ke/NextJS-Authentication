@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useRouter, redirect } from "next/navigation";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 function ResetPasswordPage() {
