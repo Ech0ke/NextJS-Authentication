@@ -1,13 +1,11 @@
 import React from "react";
 
 type popupProps = {
-  show: boolean;
-  email: string;
   handleClose(): void;
+  text: React.ReactNode;
 };
 
-function Popup({ show, email, handleClose }: popupProps) {
-  if (!show) return;
+function Popup({ handleClose, text }: popupProps) {
   return (
     <div
       id="popup-modal"
@@ -57,11 +55,7 @@ function Popup({ show, email, handleClose }: popupProps) {
                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <h3 className="mb-5 text-lg font-normal text-gray-300">
-              Your account has been created! Email verification link has been
-              sent to <span className="underline text-orange-500">{email}</span>{" "}
-              and will be valid for 24 hours.
-            </h3>
+            <h3 className="mb-5 text-lg font-normal text-gray-300">{text}</h3>
             <button
               data-modal-hide="popup-modal"
               type="button"

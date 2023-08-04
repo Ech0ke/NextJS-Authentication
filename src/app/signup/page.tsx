@@ -60,11 +60,20 @@ function SignupPage() {
 
   return (
     <>
-      <Popup
-        show={showPopup}
-        email={user.email}
-        handleClose={handleHidePopup}
-      />
+      {showPopup && (
+        <Popup
+          text={
+            <>
+              Your account has been created! Email verification link has been
+              sent to{" "}
+              <span className="underline text-orange-500">{user.email}</span>{" "}
+              and will be valid for 24 hours.
+            </>
+          }
+          handleClose={handleHidePopup}
+        />
+      )}
+
       <div className="flex justify-center items-center min-h-[calc(100vh-72px)]">
         <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
           <Image src={Logo} className=" h-16 mb-5" alt="App Logo" />
