@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { BeatLoader } from "react-spinners";
+import Logo from "@/images/demoLogo.svg";
+import Image from "next/image";
 
 function LoginPage() {
   const router = useRouter();
@@ -47,13 +49,14 @@ function LoginPage() {
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-72px)]">
       <div className="flex flex-col rounded-md items-center max-w-[450px] min-w-[280px] w-11/12  justify-center pt-8 pb-5 px-5 md:px-8 bg-metal text-whiteText">
+        <Image src={Logo} className=" h-16 mb-5" alt="App Logo" />
         <h1 className="text-2xl font-bold mb-6 text-center">
           Login to the DEMO
         </h1>
         <form onSubmit={handleLogin} className="[&>label]:ml-1">
           <label htmlFor="email">Email</label>
           <input
-            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-4 bg-transparent transition duration-200 ease-in-out text-sm"
+            className="input-style"
             id="email"
             type="text"
             value={user.email}
@@ -62,7 +65,7 @@ function LoginPage() {
           />
           <label htmlFor="password">Password</label>
           <input
-            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-2 bg-transparent transition duration-200 ease-in-out text-sm"
+            className=" input-style !mb-2"
             id="password"
             type="password"
             value={user.password}

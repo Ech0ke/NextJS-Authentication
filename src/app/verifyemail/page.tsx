@@ -2,11 +2,13 @@
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { BeatLoader } from "react-spinners";
 
 function VerifyEmailPage() {
+  const router = useRouter();
   const [token, setToken] = useState("");
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
@@ -22,6 +24,10 @@ function VerifyEmailPage() {
       verifyUserEmail();
     }
   }, [token]);
+
+  const handleClick = () => {
+    router.push("/login");
+  };
 
   async function verifyUserEmail() {
     try {
@@ -45,7 +51,10 @@ function VerifyEmailPage() {
         {verified ? (
           <div>
             <h2 className="text-2xl">Email Verified ✅</h2>{" "}
-            <button className="w-full p-2 border bg-orange-600 text-white  rounded-lg mb-4 focus:outline-none focus:border-none hover:bg-orange-500 transition duration-300 ease-in-out">
+            <button
+              onClick={handleClick}
+              className="w-full p-2 border bg-orange-600 text-white  rounded-lg mb-4 focus:outline-none focus:border-none hover:bg-orange-500 transition duration-300 ease-in-out"
+            >
               Login
             </button>
           </div>

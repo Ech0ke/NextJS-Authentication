@@ -23,7 +23,9 @@ function ForgotPasswordPage() {
     try {
       setLoading(true);
       await axios.post("/api/users/forgotpassword", { email: email });
-      toast.success("Reset password link sent. Check your email.");
+      toast.success("Reset password link sent. Check your email.", {
+        duration: 4000,
+      });
     } catch (e: any) {
       if (e.response) {
         // If the error object has a response and the response has a data object with an "error" property
@@ -49,7 +51,7 @@ function ForgotPasswordPage() {
         <form className="[&>label]:ml-1" onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
           <input
-            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
+            className="input-style !mb-5"
             id="email"
             type="text"
             value={email}

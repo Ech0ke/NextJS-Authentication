@@ -75,7 +75,7 @@ function ResetPasswordPage() {
         <form className="text-center" onSubmit={handleSubmit}>
           <label htmlFor="password">New password</label>
           <input
-            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
+            className="input-style !mb-5"
             id="password"
             name="password"
             type="password"
@@ -85,7 +85,7 @@ function ResetPasswordPage() {
           />
           <label htmlFor="confirmPassword">Repeat new password</label>
           <input
-            className="w-full p-2 outline-offset-0 focus:outline-none focus:ring-orange-500 focus:ring-2 border-2 border-gray-500 rounded-lg mb-5 bg-transparent transition duration-200 ease-in-out text-sm"
+            className="input-style !mb-5"
             id="confirmPassword"
             name="confirmPassword"
             type="password"
