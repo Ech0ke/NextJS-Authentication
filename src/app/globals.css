@@ -51,13 +51,16 @@ body {
   box-shadow: 0 0 0 0 transparent;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.input-style:-webkit-autofill,
+.input-style:-webkit-autofill:hover,
+.input-style:-webkit-autofill:focus,
+.input-style:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px rgb(56, 56, 56) inset !important;
 }
 
-input:-webkit-autofill {
+.input-style:-webkit-autofill {
   -webkit-text-fill-color: white !important;
+}
+.input-style:-webkit-autofill {
+  caret-color: white;
 }
